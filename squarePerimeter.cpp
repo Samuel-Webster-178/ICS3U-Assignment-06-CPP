@@ -8,36 +8,49 @@
 #include <iostream>
 
 
-float perimeterCalculator() {
-    
+float perimeterCalculator(float sideLength) {
+    // I calculate perimeter of a square
+    float perimeter;
+
+    // squares have four sides
+    perimeter = sideLength * 4;
+    return perimeter;
 }
 
 
 int main() {
-    // I calculate circumference of a circle
+    // I am main, I manage input and output
     std::string strSideLength;
     float fltSideLength;
     float perimeter;
 
+    // input & process
     while (true) {
-        std::cout << "";
+        // I repeat until valid input is given
+        std::cout << "Enter the side length of your square (cm): ";
         std::cin >> strSideLength;
+
+        // check if input is string or impossible to be edge length
         try {
             fltSideLength = std::stof(strSideLength);
             if (fltSideLength <= 0) {
+                // length can't be negative nor non-existant
+                std::cout << "Enter valid side length" << std::endl;
                 continue;
             }
         }
         catch (std::invalid_argument) {
+            std::cout << "Enter valid side length" << std::endl;
             continue;
         }
-        std::cout << "test";
+        // process
+        perimeter = perimeterCalculator(fltSideLength);
         break;
     }
 
 
     // output
-    std::cout << "" << std::endl;
-    std::cout << "Circumference is " << " mm" << std::endl;
+    std::cout << "The perimeter of your square is " << perimeter;
+    std::cout << " cm." << std::endl;
     std::cout << "\nDone." << std::endl;
 }
